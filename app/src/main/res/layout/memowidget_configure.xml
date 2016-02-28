@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="16dp">
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="10dp"
+        android:singleLine="true"
+        android:switchMinWidth="40dp"
+        android:switchPadding="10dp"
+        android:text="@string/show_hint"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/button_dismiss"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/button_dismiss"
+        android:textSize="18sp"/>
+
+</LinearLayout>

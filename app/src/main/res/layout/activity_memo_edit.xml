@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="250dp"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:overScrollMode="never"
+              android:padding="5dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/app_name"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:textColor="@android:color/darker_gray"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:padding="2dp">
+
+        <EditText
+            android:id="@+id/editTextLine1"
+            style="@style/EditTextStyle"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:padding="2dp">
+
+        <EditText
+            android:id="@+id/editTextLine2"
+            style="@style/EditTextStyle"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:padding="2dp">
+
+        <EditText
+            android:id="@+id/editTextLine3"
+            style="@style/EditTextStyle"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:padding="2dp">
+
+        <EditText
+            android:id="@+id/editTextLine4"
+            style="@style/EditTextStyle"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:padding="2dp">
+
+        <EditText
+            android:id="@+id/editTextLine5"
+            style="@style/EditTextStyle"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/textViewDisabledHint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/widget_disabled_hint"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone"/>
+
+</LinearLayout>

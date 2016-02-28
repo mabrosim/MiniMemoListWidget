@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    android:id="@+id/toast_layout_root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/toast_rounded_background"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:ignore="Overdraw">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="4dp"
+        android:text="@string/toast_updated"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="5dp"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"
+        android:padding="4dp"
+        android:text="@string/toast_text_1"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"
+        android:padding="4dp"
+        android:text="@string/toast_text_2"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"
+        android:padding="4dp"
+        android:text="@string/toast_text_3"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+</LinearLayout>
