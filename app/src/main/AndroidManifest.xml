@@ -30,8 +30,7 @@
         </activity>
 
         <receiver
-            android:name=".MemoWidget"
-            android:exported="true">
+            android:name=".MemoWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
@@ -42,12 +41,7 @@
         </receiver>
 
         <service
-            android:name=".MemoWidget$UpdateService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="fi.mabrosim.memowidget.action.CLICK"/>
-                <action android:name="fi.mabrosim.memowidget.action.TEXT_CHANGED"/>
-            </intent-filter>
+            android:name=".MemoWidget$UpdateService">
         </service>
     </application>
 

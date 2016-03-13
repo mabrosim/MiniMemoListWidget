@@ -78,6 +78,10 @@ public class MemoWidget extends AppWidgetProvider {
     }
 
     static void singleClickHandler(Context context) {
+        startActivity(context, MemoWidgetEditActivity.class);
+    }
+
+    static void doubleClickHandler(Context context) {
         if (Prefs.isShowHint(context)) {
             showToast(context);
         }
@@ -85,18 +89,11 @@ public class MemoWidget extends AppWidgetProvider {
         updateMemoWidget(context);
     }
 
-    static void doubleClickHandler(Context context) {
-        startActivity(context, MemoWidgetEditActivity.class);
-    }
-
     static void tripleClickHandler(Context context) {
         startActivity(context, MemoWidgetConfigureActivity.class);
     }
 
     private static void updateViews(Context context) {
-        ComponentName thisWidget = new ComponentName(context, MemoWidget.class);
-        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-        PendingIntent pendingIntent = PendingIntent.getService(context, 0, new Intent(Clicks.ACTION_CLICK), 0);
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.memowidget);
 
         List<String> texts = Prefs.getTexts(context, Prefs.getSortingType(context));
@@ -104,7 +101,6 @@ public class MemoWidget extends AppWidgetProvider {
         for (int i = 0; i < count; i++) {
             views.setTextViewText(VIEW_IDS[i], texts.get(i));
         }
-
         // the footer is either sorting type or last edited time
         String sortingType = SortingType.toString(context, Prefs.getSortingType(context));
         if (sortingType.isEmpty()) {
@@ -113,10 +109,13 @@ public class MemoWidget extends AppWidgetProvider {
             views.setTextViewText(R.id.textFooter, sortingType);
         }
 
+        Intent intent = new Intent(Clicks.ACTION_CLICK, null, context, UpdateService.class);
+        PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
         views.setOnClickPendingIntent(R.id.layoutWidget, pendingIntent);
 
         // Instruct the widget manager to update the widget
-        appWidgetManager.updateAppWidget(thisWidget, views);
+        ComponentName thisWidget = new ComponentName(context, MemoWidget.class);
+        AppWidgetManager.getInstance(context).updateAppWidget(thisWidget, views);
     }
 
     private static String timestampToString(long ts) {
