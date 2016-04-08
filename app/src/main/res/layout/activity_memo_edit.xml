@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="250dp"
+              android:layout_width="320dp"
               android:layout_height="wrap_content"
               android:orientation="vertical"
               android:overScrollMode="never"
@@ -15,60 +15,65 @@
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
         android:textColor="@android:color/darker_gray"/>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="1dp"
-        android:padding="2dp">
+    <LinearLayout
+        style="@style/TextLineLayoutStyle">
 
         <EditText
             android:id="@+id/editTextLine1"
             style="@style/EditTextStyle"/>
-    </FrameLayout>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="1dp"
-        android:padding="2dp">
+        <ImageButton
+            android:id="@+id/buttonClear1"
+            style="@style/ButtonClearStyle"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/TextLineLayoutStyle">
 
         <EditText
             android:id="@+id/editTextLine2"
             style="@style/EditTextStyle"/>
-    </FrameLayout>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="1dp"
-        android:padding="2dp">
+        <ImageButton
+            android:id="@+id/buttonClear2"
+            style="@style/ButtonClearStyle"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/TextLineLayoutStyle">
 
         <EditText
             android:id="@+id/editTextLine3"
             style="@style/EditTextStyle"/>
-    </FrameLayout>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="1dp"
-        android:padding="2dp">
+        <ImageButton
+            android:id="@+id/buttonClear3"
+            style="@style/ButtonClearStyle"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/TextLineLayoutStyle">
 
         <EditText
             android:id="@+id/editTextLine4"
             style="@style/EditTextStyle"/>
-    </FrameLayout>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="1dp"
-        android:padding="2dp">
+        <ImageButton
+            android:id="@+id/buttonClear4"
+            style="@style/ButtonClearStyle"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/TextLineLayoutStyle">
 
         <EditText
             android:id="@+id/editTextLine5"
             style="@style/EditTextStyle"/>
-    </FrameLayout>
+
+        <ImageButton
+            android:id="@+id/buttonClear5"
+            style="@style/ButtonClearStyle"/>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textViewDisabledHint"

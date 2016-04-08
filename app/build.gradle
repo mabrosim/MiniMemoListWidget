@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
     defaultConfig {
         applicationId "fi.mabrosim.memowidget"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 3
-        versionName "16w10.7"
+        versionCode 4
+        versionName "16w14.5"
     }
     buildTypes {
         debug {

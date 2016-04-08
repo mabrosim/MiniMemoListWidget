@@ -59,9 +59,19 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="EditTextStyle" parent="android:Widget.DeviceDefault.EditText">
+    <style name="TextLineLayoutStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">1dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="EditTextStyle" parent="android:Widget.DeviceDefault.EditText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">0.9</item>
         <item name="android:paddingLeft">4dp</item>
         <item name="android:paddingRight">4dp</item>
         <item name="android:inputType">text</item>
@@ -69,6 +79,16 @@
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textAppearance">@android:style/TextAppearance.DeviceDefault.Medium</item>
         <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="ButtonClearStyleNoMargin" parent="android:Widget.DeviceDefault.ImageButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.1</item>
+        <item name="android:background">@drawable/button_clear</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:src">@drawable/ic_clear_black_48dp</item>
     </style>
 
 </resources>
