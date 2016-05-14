@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="ButtonClearStyle" parent="ButtonClearStyleNoMargin">
+    <style name="EditButtonStyle" parent="EditButtonStyleNoMargin">
         <item name="android:layout_marginLeft">6dp</item>
     </style>
 </resources>

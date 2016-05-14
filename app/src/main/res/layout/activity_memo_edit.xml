@@ -23,8 +23,8 @@
             style="@style/EditTextStyle"/>
 
         <ImageButton
-            android:id="@+id/buttonClear1"
-            style="@style/ButtonClearStyle"/>
+            android:id="@+id/button1"
+            style="@style/EditButtonStyle"/>
     </LinearLayout>
 
     <LinearLayout
@@ -35,8 +35,8 @@
             style="@style/EditTextStyle"/>
 
         <ImageButton
-            android:id="@+id/buttonClear2"
-            style="@style/ButtonClearStyle"/>
+            android:id="@+id/button2"
+            style="@style/EditButtonStyle"/>
     </LinearLayout>
 
     <LinearLayout
@@ -47,8 +47,8 @@
             style="@style/EditTextStyle"/>
 
         <ImageButton
-            android:id="@+id/buttonClear3"
-            style="@style/ButtonClearStyle"/>
+            android:id="@+id/button3"
+            style="@style/EditButtonStyle"/>
     </LinearLayout>
 
     <LinearLayout
@@ -59,8 +59,8 @@
             style="@style/EditTextStyle"/>
 
         <ImageButton
-            android:id="@+id/buttonClear4"
-            style="@style/ButtonClearStyle"/>
+            android:id="@+id/button4"
+            style="@style/EditButtonStyle"/>
     </LinearLayout>
 
     <LinearLayout
@@ -71,8 +71,8 @@
             style="@style/EditTextStyle"/>
 
         <ImageButton
-            android:id="@+id/buttonClear5"
-            style="@style/ButtonClearStyle"/>
+            android:id="@+id/button5"
+            style="@style/EditButtonStyle"/>
     </LinearLayout>
 
     <TextView

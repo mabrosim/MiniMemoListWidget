@@ -81,14 +81,15 @@
         <item name="android:textSize">22sp</item>
     </style>
 
-    <style name="ButtonClearStyleNoMargin" parent="android:Widget.DeviceDefault.ImageButton">
+    <style name="EditButtonStyleNoMargin" parent="android:Widget.DeviceDefault.ImageButton">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">0.1</item>
-        <item name="android:background">@drawable/button_clear</item>
+        <item name="android:background">@drawable/button</item>
         <item name="android:padding">2dp</item>
         <item name="android:scaleType">fitXY</item>
-        <item name="android:src">@drawable/ic_clear_black_48dp</item>
+        <item name="android:src">@drawable/ic_clear_grey_400_24dp</item>
+        <item name="android:onClick">onButtonClick</item>
     </style>
 
 </resources>
