@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">Mini Memo List Widget</string>
+    <string name="show_hint">Показывать справку?</string>
+    <string name="toast_text_1"> 1 * tap \u2015> Открыть редактор</string>
+    <string name="toast_text_2"> 2 * tap \u2015> Сортировать</string>
+    <string name="toast_text_3"> 3 * tap \u2015> Показывать справку?</string>
+    <string name="toast_help">Справка</string>
+    <string name="button_dismiss">Отмена</string>
+    <string name="widget_disabled_hint">Пожалуйста,\nдобавьте Mini Memo List виджет на главный экран</string>
+    <string name="sorting_by_name">по имени</string>
+    <string name="sorting_by_date">по дате</string>
+    <string name="sorting_default"/>
+</resources>

@@ -3,10 +3,10 @@
 <resources>
     <string name="app_name">Mini Memo List Widget</string>
     <string name="show_hint">Tapping hint?</string>
-    <string name="toast_text_1"> 1 * tap \u2015> Sort texts</string>
-    <string name="toast_text_2"> 2 * tap \u2015> Open editor</string>
+    <string name="toast_text_1"> 1 * tap \u2015> Open editor</string>
+    <string name="toast_text_2"> 2 * tap \u2015> Sort texts</string>
     <string name="toast_text_3"> 3 * tap \u2015> Show hint?</string>
-    <string name="toast_updated">Refreshed!</string>
+    <string name="toast_help">Help</string>
     <string name="button_dismiss">Dismiss</string>
     <string name="widget_disabled_hint">Please,\n add Mini Memo List widget to the home screen</string>
     <string name="sorting_by_name">by name</string>

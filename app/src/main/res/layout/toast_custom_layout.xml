@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="4dp"
-        android:text="@string/toast_updated"
+        android:text="@string/toast_help"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <View
