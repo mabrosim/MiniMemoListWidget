@@ -65,7 +65,7 @@ public class MemoWidgetEditActivity extends Activity {
                 break;
             }
             case UNDO: {
-                String text = (String) view.getTag(R.id.cachedText);
+                CharSequence text = (String) view.getTag(R.id.cachedText);
                 view.setTag(R.id.cachedText, "");
                 ((EditText) findViewById(editTextIds[buttonIds.indexOf(view.getId())])).setText(text);
                 break;

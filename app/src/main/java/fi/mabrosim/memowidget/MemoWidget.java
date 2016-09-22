@@ -118,7 +118,7 @@ public class MemoWidget extends AppWidgetProvider {
         AppWidgetManager.getInstance(context).updateAppWidget(thisWidget, views);
     }
 
-    private static String timestampToString(long ts) {
+    private static CharSequence timestampToString(long ts) {
         SimpleDateFormat sdf;
         Date resultDate = new Date(ts);
         sdf = new SimpleDateFormat("MMM dd, HH:mm", Locale.getDefault());

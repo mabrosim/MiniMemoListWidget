@@ -7,16 +7,16 @@ class TextLine {
     private String mText      = "";
     private long   mTimestamp = 0L;
 
-    public TextLine(String text, long timestamp) {
+    TextLine(String text, long timestamp) {
         mText = text;
         mTimestamp = timestamp;
     }
 
-    public String getText() {
+    String getText() {
         return mText;
     }
 
-    public long getTimestamp() {
+    long getTimestamp() {
         return mTimestamp;
     }
 
@@ -24,7 +24,7 @@ class TextLine {
      * Comparator implements simple alphanumeric sorting from a to z,<br>
      * empty text line is shifted to the list end.
      */
-    public static class NameComparator implements Comparator<TextLine>, Serializable {
+    static class NameComparator implements Comparator<TextLine>, Serializable {
 
         @Override
         public int compare(TextLine lhs, TextLine rhs) {
@@ -42,7 +42,7 @@ class TextLine {
      * Comparator implements timestamp sorting from last to first,<br>
      * empty text line is shifted to the list end.
      */
-    public static class TimestampComparator implements Comparator<TextLine>, Serializable {
+    static class TimestampComparator implements Comparator<TextLine>, Serializable {
 
         @Override
         public int compare(TextLine lhs, TextLine rhs) {

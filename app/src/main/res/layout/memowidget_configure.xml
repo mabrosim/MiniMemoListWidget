@@ -16,11 +16,11 @@
         android:layout_marginRight="2dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="10dp"
-        android:singleLine="true"
         android:switchMinWidth="40dp"
         android:switchPadding="10dp"
         android:text="@string/show_hint"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:maxLines="1"/>
 
     <Button
         android:id="@+id/button_dismiss"

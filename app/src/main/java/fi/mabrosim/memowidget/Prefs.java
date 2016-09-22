@@ -26,23 +26,23 @@ final class Prefs {
     private Prefs() {
     }
 
-    public static boolean isShowHint(Context context) {
+    static boolean isShowHint(Context context) {
         return getBoolean(context, PREF_SHOW_HINT, true);
     }
 
-    public static void setShowHint(Context context, boolean b) {
+    static void setShowHint(Context context, boolean b) {
         putBoolean(context, PREF_SHOW_HINT, b);
     }
 
-    public static void putEnabledValue(Context context, boolean v) {
+    static void putEnabledValue(Context context, boolean v) {
         putBoolean(context, PREF_IS_WIDGET_ENABLED, v);
     }
 
-    public static boolean isWidgetEnabled(Context context) {
+    static boolean isWidgetEnabled(Context context) {
         return getBoolean(context, PREF_IS_WIDGET_ENABLED, false);
     }
 
-    public static void saveTexts(Context context, List<String> lines) {
+    static void saveTexts(Context context, List<String> lines) {
         final SharedPreferences sharedPreferences = sharedPreferences(context);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
         final List<TextLine> storedLines = getTextLines(context);
@@ -66,7 +66,7 @@ final class Prefs {
         editor.apply();
     }
 
-    public static List<String> getTexts(Context context) {
+    static List<String> getTexts(Context context) {
         final List<String> texts = new ArrayList<>();
         for (TextLine line : getTextLines(context)) {
             texts.add(line.getText());
@@ -74,7 +74,7 @@ final class Prefs {
         return texts;
     }
 
-    public static List<String> getTexts(Context context, int sortingType) {
+    static List<String> getTexts(Context context, int sortingType) {
         final List<String> texts = new ArrayList<>();
         List<TextLine> lines = getTextLines(context);
 
@@ -98,27 +98,27 @@ final class Prefs {
         return texts;
     }
 
-    public static long getLastEditedTimestamp(Context context) {
+    static long getLastEditedTimestamp(Context context) {
         List<TextLine> lines = getTextLines(context);
         Collections.sort(lines, new TextLine.TimestampComparator());
         return lines.get(0).getTimestamp();
     }
 
-    public static int getSortingType(Context context) {
+    static int getSortingType(Context context) {
         return sharedPreferences(context).getInt(KEY_SORTING_TYPE, SortingType.DEFAULT);
     }
 
-    public static void putSortingType(Context context, int type) {
+    static void putSortingType(Context context, int type) {
         SharedPreferences.Editor sharedPrefEditor = sharedPreferences(context).edit();
         sharedPrefEditor.putInt(KEY_SORTING_TYPE, type);
         sharedPrefEditor.apply();
     }
 
-    public static long getVersionCode(Context context) {
+    static long getVersionCode(Context context) {
         return sharedPreferences(context).getLong(KEY_VERSION_CODE, 0L);
     }
 
-    public static void putVersionCode(Context context) {
+    static void putVersionCode(Context context) {
         SharedPreferences.Editor sharedPrefEditor = sharedPreferences(context).edit();
         sharedPrefEditor.putLong(KEY_VERSION_CODE, (long) BuildConfig.VERSION_CODE);
         sharedPrefEditor.apply();

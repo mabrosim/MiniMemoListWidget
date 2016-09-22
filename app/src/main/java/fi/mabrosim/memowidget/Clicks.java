@@ -3,8 +3,8 @@ package fi.mabrosim.memowidget;
 import android.content.Context;
 import android.os.Handler;
 
-public final class Clicks {
-    public static final String ACTION_CLICK = "fi.mabrosim.memowidget.action.CLICK";
+final class Clicks {
+    static final String ACTION_CLICK = "fi.mabrosim.memowidget.action.CLICK";
 
     private static final Clicks sInstance         = new Clicks();
     private static final int    CLICK_DELAY_IN_MS = 380;
