@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">MemoWidget (RD)</string>
+    <string name="app_name" translatable="false">MemoWidget (RD)</string>
     <string-array name="demo_texts" tools:ignore="MissingTranslation">
         <item>L1, PIN 7777</item>
         <item>1234567890</item>

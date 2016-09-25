@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,17 +39,18 @@ public class MemoWidgetEditActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        List<String> texts = Prefs.getTexts(this);
-        int count = texts.size();
-        for (int i = 0; i < count; i++) {
-            mEditTexts.get(i).setText(texts.get(i));
+        List<TextLine> lines = Prefs.getTextLines(this);
+        for (int i = 0; i < Prefs.TEXT_LINE_COUNT; i++) {
+            mEditTexts.get(i).setText(lines.get(i).getText());
         }
+        TextView footer = (TextView) findViewById(R.id.textFooter);
+        footer.setText(Utils.getFooterText(this, lines));
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        final List<String> strings = new ArrayList<>();
+        List<String> strings = new ArrayList<>();
         for (EditText et : mEditTexts) {
             strings.add(et.getText().toString());
         }
@@ -65,7 +67,7 @@ public class MemoWidgetEditActivity extends Activity {
                 break;
             }
             case UNDO: {
-                CharSequence text = (String) view.getTag(R.id.cachedText);
+                CharSequence text = (CharSequence) view.getTag(R.id.cachedText);
                 view.setTag(R.id.cachedText, "");
                 ((EditText) findViewById(editTextIds[buttonIds.indexOf(view.getId())])).setText(text);
                 break;
