@@ -2,12 +2,12 @@ package fi.mabrosim.memowidget;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 final class Prefs {
@@ -21,7 +21,7 @@ final class Prefs {
     private static final String PREF_SHOW_HINT         = "SHOW_HINT";
     private static final String PREF_IS_WIDGET_ENABLED = "WIDGET_IS_ENABLED";
 
-    private final static int TEXT_LINE_COUNT = 5;
+    static final int TEXT_LINE_COUNT = 5;
 
     private Prefs() {
     }
@@ -42,76 +42,26 @@ final class Prefs {
         return getBoolean(context, PREF_IS_WIDGET_ENABLED, false);
     }
 
-    static void saveTexts(Context context, List<String> lines) {
-        final SharedPreferences sharedPreferences = sharedPreferences(context);
-        final SharedPreferences.Editor editor = sharedPreferences.edit();
-        final List<TextLine> storedLines = getTextLines(context);
-        String newText;
-        JSONObject jsonObject;
-
-        for (int i = 0; i < TEXT_LINE_COUNT; i++) {
-            newText = lines.get(i);
-            if (!(storedLines.get(i).getText().equals(newText))) {
-                jsonObject = new JSONObject();
-                try {
-                    editor.remove(KEY_PREFIX_LINE + i);
-                    jsonObject.put(JSON_KEY_TEXT, newText);
-                    jsonObject.put(JSON_KEY_TIMESTAMP, System.currentTimeMillis());
-                    editor.putString(KEY_PREFIX_LINE + i, jsonObject.toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        editor.apply();
-    }
-
-    static List<String> getTexts(Context context) {
-        final List<String> texts = new ArrayList<>();
-        for (TextLine line : getTextLines(context)) {
-            texts.add(line.getText());
-        }
-        return texts;
-    }
-
-    static List<String> getTexts(Context context, int sortingType) {
-        final List<String> texts = new ArrayList<>();
-        List<TextLine> lines = getTextLines(context);
-
-        switch (sortingType) {
-            case SortingType.BY_NAME: {
-                Collections.sort(lines, new TextLine.NameComparator());
-                break;
-            }
-            case SortingType.BY_TIME: {
-                Collections.sort(lines, new TextLine.TimestampComparator());
-                break;
-            }
-            case SortingType.DEFAULT: {
-                break;
-            }
-        }
-
-        for (TextLine line : lines) {
-            texts.add(line.getText());
-        }
-        return texts;
-    }
-
-    static long getLastEditedTimestamp(Context context) {
-        List<TextLine> lines = getTextLines(context);
-        Collections.sort(lines, new TextLine.TimestampComparator());
-        return lines.get(0).getTimestamp();
-    }
-
     static int getSortingType(Context context) {
         return sharedPreferences(context).getInt(KEY_SORTING_TYPE, SortingType.DEFAULT);
     }
 
-    static void putSortingType(Context context, int type) {
-        SharedPreferences.Editor sharedPrefEditor = sharedPreferences(context).edit();
-        sharedPrefEditor.putInt(KEY_SORTING_TYPE, type);
-        sharedPrefEditor.apply();
+    static void setNextSortingType(Context context) {
+        switch (Prefs.getSortingType(context)) {
+            case SortingType.BY_NAME: {
+                Prefs.putSortingType(context, SortingType.BY_TIME);
+                break;
+            }
+            case SortingType.DEFAULT: {
+                Prefs.putSortingType(context, SortingType.BY_NAME);
+                break;
+            }
+            default:
+            case SortingType.BY_TIME: {
+                Prefs.putSortingType(context, SortingType.DEFAULT);
+                break;
+            }
+        }
     }
 
     static long getVersionCode(Context context) {
@@ -124,16 +74,40 @@ final class Prefs {
         sharedPrefEditor.apply();
     }
 
-    private static List<TextLine> getTextLines(Context context) {
+    static void saveTexts(Context context, List<String> texts) {
+        final SharedPreferences sharedPreferences = sharedPreferences(context);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+        final List<TextLine> storedLines = getTextLines(context);
+
+        JSONObject jsonObject = new JSONObject();
+        for (int i = 0; i < TEXT_LINE_COUNT; i++) {
+            String newText = texts.get(i);
+            TextLine line = storedLines.get(i);
+
+            if (!(newText.equals(line.getText()))) {
+                try {
+                    int id = line.getId();
+                    editor.remove(KEY_PREFIX_LINE + id);
+                    jsonObject.put(JSON_KEY_TEXT, newText);
+                    jsonObject.put(JSON_KEY_TIMESTAMP, System.currentTimeMillis());
+                    editor.putString(KEY_PREFIX_LINE + id, jsonObject.toString());
+                } catch (JSONException e) {
+                    Log.e("Prefs", "saveTexts: ", e);
+                }
+            }
+        }
+        editor.apply();
+    }
+
+    static List<TextLine> getTextLines(Context context) {
         final SharedPreferences sharedPreferences = sharedPreferences(context);
         final List<TextLine> lines = new ArrayList<>();
-        JSONObject jsonObject;
-        long timestamp;
-        String text;
 
         for (int i = 0; i < TEXT_LINE_COUNT; i++) {
             try {
-                jsonObject = new JSONObject(sharedPreferences.getString(KEY_PREFIX_LINE + i, new JSONObject().toString()));
+                String text;
+                long timestamp;
+                JSONObject jsonObject = new JSONObject(sharedPreferences.getString(KEY_PREFIX_LINE + i, "{}"));
                 if (jsonObject.has(JSON_KEY_TIMESTAMP)) {
                     timestamp = jsonObject.getLong(JSON_KEY_TIMESTAMP);
                 } else {
@@ -144,13 +118,19 @@ final class Prefs {
                 } else {
                     text = "";
                 }
-                lines.add(new TextLine(text, timestamp));
+                lines.add(new TextLine(text, timestamp, i));
             } catch (JSONException e) {
-                e.printStackTrace();
+                Log.e("Prefs", "getTextLines: ", e);
             }
         }
-
+        TextLine.sort(lines, getSortingType(context));
         return lines;
+    }
+
+    private static void putSortingType(Context context, int type) {
+        SharedPreferences.Editor sharedPrefEditor = sharedPreferences(context).edit();
+        sharedPrefEditor.putInt(KEY_SORTING_TYPE, type);
+        sharedPrefEditor.apply();
     }
 
     private static SharedPreferences sharedPreferences(Context context) {

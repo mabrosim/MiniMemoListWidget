@@ -35,7 +35,7 @@ public class ButtonStateTextWatcher implements TextWatcher {
     }
 
     private static void setButtonState(ImageButton imageButton, STATE state) {
-        if (state.equals(imageButton.getTag(R.id.buttonState))) {
+        if (state == imageButton.getTag(R.id.buttonState)) {
             return;
         }
         imageButton.setTag(R.id.buttonState, state);

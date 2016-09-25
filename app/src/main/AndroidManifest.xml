@@ -22,7 +22,7 @@
 
         <activity
             android:name=".MemoWidgetEditActivity"
-            android:theme="@style/WebViewActivityTheme">
+            android:theme="@style/EditActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

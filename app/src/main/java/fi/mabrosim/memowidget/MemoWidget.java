@@ -16,10 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Implementation of MemoWidget functionality.
@@ -85,7 +82,7 @@ public class MemoWidget extends AppWidgetProvider {
         if (Prefs.isShowHint(context)) {
             showToast(context);
         }
-        SortingType.setNextSortingType(context);
+        Prefs.setNextSortingType(context);
         updateMemoWidget(context);
     }
 
@@ -95,19 +92,12 @@ public class MemoWidget extends AppWidgetProvider {
 
     private static void updateViews(Context context) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.memowidget);
+        List<TextLine> lines = Prefs.getTextLines(context);
 
-        List<String> texts = Prefs.getTexts(context, Prefs.getSortingType(context));
-        int count = texts.size();
-        for (int i = 0; i < count; i++) {
-            views.setTextViewText(VIEW_IDS[i], texts.get(i));
+        for (int i = 0; i < Prefs.TEXT_LINE_COUNT; i++) {
+            views.setTextViewText(VIEW_IDS[i], lines.get(i).getText());
         }
-        // the footer is either sorting type or last edited time
-        String sortingType = SortingType.toString(context, Prefs.getSortingType(context));
-        if (sortingType.isEmpty()) {
-            views.setTextViewText(R.id.textFooter, timestampToString(Prefs.getLastEditedTimestamp(context)));
-        } else {
-            views.setTextViewText(R.id.textFooter, sortingType);
-        }
+        views.setTextViewText(R.id.textFooter, Utils.getFooterText(context, lines));
 
         Intent intent = new Intent(Clicks.ACTION_CLICK, null, context, UpdateService.class);
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
@@ -116,13 +106,6 @@ public class MemoWidget extends AppWidgetProvider {
         // Instruct the widget manager to update the widget
         ComponentName thisWidget = new ComponentName(context, MemoWidget.class);
         AppWidgetManager.getInstance(context).updateAppWidget(thisWidget, views);
-    }
-
-    private static CharSequence timestampToString(long ts) {
-        SimpleDateFormat sdf;
-        Date resultDate = new Date(ts);
-        sdf = new SimpleDateFormat("MMM dd, HH:mm", Locale.getDefault());
-        return sdf.format(resultDate);
     }
 
     private static void showToast(Context context) {

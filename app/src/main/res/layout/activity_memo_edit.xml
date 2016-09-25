@@ -8,12 +8,13 @@
               android:padding="5dp">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/textViewDisabledHint"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/app_name"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-        android:textColor="@android:color/darker_gray"/>
+        android:gravity="center"
+        android:text="@string/widget_disabled_hint"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone"/>
 
     <LinearLayout
         style="@style/TextLineLayoutStyle">
@@ -76,12 +77,11 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textViewDisabledHint"
-        android:layout_width="match_parent"
+        android:id="@+id/textFooter"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/widget_disabled_hint"
-        android:textColor="@android:color/holo_red_dark"
-        android:visibility="gone"/>
+        android:layout_gravity="center"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:textColor="@android:color/darker_gray"/>
 
 </LinearLayout>
