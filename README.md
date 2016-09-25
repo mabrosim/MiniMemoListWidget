@@ -13,6 +13,8 @@ The app is a widget and it should be added to the Home screen to fulfil its main
 Tap screen and hold a finger for a while at empty space on the home screen, then 
 from Widgets select “Mini Memo List Widget”.
 
+<a href="https://youtu.be/hGLxdETmtjA" target="top">Mini Memo List Widget Promo Video</a>
+
 The app is availaible on Google Play:
 
 <a href="https://play.google.com/store/apps/details?id=fi.mabrosim.memowidget" target="top">
