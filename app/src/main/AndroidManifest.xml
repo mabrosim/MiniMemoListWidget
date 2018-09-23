@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<manifest
-    package="fi.mabrosim.memowidget"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="fi.mabrosim.memowidget">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name=".MemoWidgetApp"
@@ -16,7 +17,7 @@
             android:name=".MemoWidgetConfigureActivity"
             android:theme="@style/ConfigurationActivityTheme">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
 
@@ -24,25 +25,28 @@
             android:name=".MemoWidgetEditActivity"
             android:theme="@style/EditActivityTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <receiver
-            android:name=".MemoWidget">
+        <receiver android:name=".MemoWidget">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/memowidget_info"/>
+                android:resource="@xml/memowidget_info" />
         </receiver>
 
         <service
-            android:name=".MemoWidget$UpdateService">
-        </service>
+            android:name=".MemoWidget$UpdateService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <receiver android:name=".MemoWidget$Receiver">
+
+        </receiver>
     </application>
 
 </manifest>
