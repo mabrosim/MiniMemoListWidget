@@ -1,15 +1,16 @@
 package fi.mabrosim.memowidget;
 
-import android.app.IntentService;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.IBinder;
+import android.support.annotation.NonNull;
+import android.support.v4.app.JobIntentService;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -48,24 +49,26 @@ public class MemoWidget extends AppWidgetProvider {
     }
 
     public static void updateMemoWidget(Context context) {
-        context.startService(new Intent(context, UpdateService.class));
+        UpdateService.enqueueWork(context, new Intent());
     }
 
-    public static class UpdateService extends IntentService {
-        private static final String  TAG      = "MemoWidgetUpdateService";
-        private final        Handler mHandler = new Handler();
+    public static class Receiver extends BroadcastReceiver {
 
-        public UpdateService() {
-            super(TAG);
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            UpdateService.enqueueWork(context, intent);
+        }
+    }
+
+    public static class UpdateService extends JobIntentService {
+        private final Handler mHandler = new Handler();
+
+        public static void enqueueWork(Context context, Intent work) {
+            enqueueWork(context, UpdateService.class, 1, work);
         }
 
         @Override
-        public IBinder onBind(Intent intent) {
-            return null;
-        }
-
-        @Override
-        protected void onHandleIntent(Intent intent) {
+        protected void onHandleWork(@NonNull Intent intent) {
             if (Clicks.ACTION_CLICK.equals(intent.getAction())) {
                 Clicks.handleClickAction(this, mHandler);
             } else {
@@ -99,8 +102,8 @@ public class MemoWidget extends AppWidgetProvider {
         }
         views.setTextViewText(R.id.textFooter, Utils.getFooterText(context, lines));
 
-        Intent intent = new Intent(Clicks.ACTION_CLICK, null, context, UpdateService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
+        Intent intent = new Intent(Clicks.ACTION_CLICK, null, context, Receiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
         views.setOnClickPendingIntent(R.id.layoutWidget, pendingIntent);
 
         // Instruct the widget manager to update the widget
@@ -110,11 +113,13 @@ public class MemoWidget extends AppWidgetProvider {
 
     private static void showToast(Context context) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(R.layout.toast_custom_layout, new FrameLayout(context), false);
-        Toast toast = new Toast(context);
-        toast.setDuration(Toast.LENGTH_LONG);
-        toast.setView(layout);
-        toast.show();
+        if (inflater != null) {
+            View layout = inflater.inflate(R.layout.toast_custom_layout, new FrameLayout(context), false);
+            Toast toast = new Toast(context);
+            toast.setDuration(Toast.LENGTH_LONG);
+            toast.setView(layout);
+            toast.show();
+        }
     }
 
     private static void startActivity(Context context, Class activityClass) {
