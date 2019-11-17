@@ -6,6 +6,26 @@
               android:orientation="vertical"
               android:padding="16dp">
 
+    <LinearLayout
+        style="@style/EditListSizeLayoutStyle">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.8"
+            android:maxLines="1"
+            android:text="@string/text_lines_amount"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"/>
+
+        <EditText
+            android:id="@+id/editListSize"
+            style="@style/EditListSizeStyle"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:lines="1" />
+    </LinearLayout>
+
     <Switch
         android:id="@+id/switch1"
         android:layout_width="wrap_content"

@@ -11,17 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 final class Prefs {
-    static final String PREFS_NAME         = "fi.mabrosim.memowidget.prefs";
-    static final String KEY_PREFIX_LINE    = "LINE_";
+    static final String PREFS_NAME = "fi.mabrosim.memowidget.prefs";
+    static final String KEY_PREFIX_LINE = "LINE_";
     static final String JSON_KEY_TIMESTAMP = "timestamp";
-    static final String JSON_KEY_TEXT      = "text";
+    static final String JSON_KEY_TEXT = "text";
 
-    private static final String KEY_SORTING_TYPE       = "SORTING_TYPE";
-    private static final String KEY_VERSION_CODE       = "VERSION_CODE";
-    private static final String PREF_SHOW_HINT         = "SHOW_HINT";
+    private static final String KEY_SORTING_TYPE = "SORTING_TYPE";
+    private static final String KEY_VERSION_CODE = "VERSION_CODE";
+    private static final String PREF_SHOW_HINT = "SHOW_HINT";
     private static final String PREF_IS_WIDGET_ENABLED = "WIDGET_IS_ENABLED";
-
-    static final int TEXT_LINE_COUNT = 5;
+    private static final String PREF_TEXT_LINE_COUNT = "TEXT_LINE_COUNT";
+    private static final int DEFAULT_TEXT_LINE_COUNT = 6;
 
     private Prefs() {
     }
@@ -64,6 +64,16 @@ final class Prefs {
         }
     }
 
+    static void setTextLineCount(Context context, int lineCount) {
+        SharedPreferences.Editor sharedPrefEditor = sharedPreferences(context).edit();
+        sharedPrefEditor.putInt(PREF_TEXT_LINE_COUNT, lineCount);
+        sharedPrefEditor.apply();
+    }
+
+    static int getTextLineCount(Context context) {
+        return sharedPreferences(context).getInt(PREF_TEXT_LINE_COUNT, DEFAULT_TEXT_LINE_COUNT);
+    }
+
     static long getVersionCode(Context context) {
         return sharedPreferences(context).getLong(KEY_VERSION_CODE, 0L);
     }
@@ -78,9 +88,10 @@ final class Prefs {
         final SharedPreferences sharedPreferences = sharedPreferences(context);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
         final List<TextLine> storedLines = getTextLines(context);
+        final int textLineCount = sharedPreferences.getInt(PREF_TEXT_LINE_COUNT, DEFAULT_TEXT_LINE_COUNT);
 
         JSONObject jsonObject = new JSONObject();
-        for (int i = 0; i < TEXT_LINE_COUNT; i++) {
+        for (int i = 0; i < textLineCount; i++) {
             String newText = texts.get(i);
             TextLine line = storedLines.get(i);
 
@@ -102,8 +113,9 @@ final class Prefs {
     static List<TextLine> getTextLines(Context context) {
         final SharedPreferences sharedPreferences = sharedPreferences(context);
         final List<TextLine> lines = new ArrayList<>();
+        final int textLineCount = sharedPreferences.getInt(PREF_TEXT_LINE_COUNT, DEFAULT_TEXT_LINE_COUNT);
 
-        for (int i = 0; i < TEXT_LINE_COUNT; i++) {
+        for (int i = 0; i < textLineCount; i++) {
             try {
                 String text;
                 long timestamp;

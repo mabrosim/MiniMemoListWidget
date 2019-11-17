@@ -3,6 +3,7 @@
 <resources>
     <string name="app_name" translatable="false">Mini Memo List Widget</string>
     <string name="show_hint">Tapping hint?</string>
+    <string name="text_lines_amount">List size</string>
     <string name="toast_text_1"> 1 * tap \u2015> Open editor</string>
     <string name="toast_text_2"> 2 * tap \u2015> Sort texts</string>
     <string name="toast_text_3"> 3 * tap \u2015> Show hint?</string>

@@ -12,18 +12,26 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MemoWidgetEditActivity extends Activity {
-    private final        List<EditText> mEditTexts  = new ArrayList<>();
-    private static final int[]          editTextIds = {R.id.editTextLine1, R.id.editTextLine2, R.id.editTextLine3, R.id.editTextLine4, R.id.editTextLine5};
-    private static final List<Integer>  buttonIds   = Arrays.asList(R.id.button1, R.id.button2, R.id.button3, R.id.button4, R.id.button5);
+    private final List<EditText> mEditTexts = new ArrayList<>();
+    private static final int[] EDIT_TEXT_IDS = {R.id.editTextLine1, R.id.editTextLine2,
+            R.id.editTextLine3, R.id.editTextLine4, R.id.editTextLine5, R.id.editTextLine6,
+            R.id.editTextLine7, R.id.editTextLine8, R.id.editTextLine9};
+    private static final List<Integer> BUTTON_IDS = Arrays.asList(R.id.button1, R.id.button2,
+            R.id.button3, R.id.button4, R.id.button5, R.id.button6, R.id.button7,
+            R.id.button8, R.id.button9);
+    private static final int[] LAYOUT_IDS = {R.layout.activity_memo_edit5,
+            R.layout.activity_memo_edit6, R.layout.activity_memo_edit7,
+            R.layout.activity_memo_edit8, R.layout.activity_memo_edit9};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_memo_edit);
+        final int textLineCount = Prefs.getTextLineCount(this);
+        setContentView(LAYOUT_IDS[textLineCount - 5]);
 
-        for (int i = 0; i < editTextIds.length; i++) {
-            EditText editText = (EditText) findViewById(editTextIds[i]);
-            ImageButton imageButton = (ImageButton) findViewById(buttonIds.get(i));
+        for (int i = 0; i < textLineCount; i++) {
+            EditText editText = (EditText) findViewById(EDIT_TEXT_IDS[i]);
+            ImageButton imageButton = (ImageButton) findViewById(BUTTON_IDS.get(i));
 
             mEditTexts.add(editText);
             editText.addTextChangedListener(new ButtonStateTextWatcher(imageButton));
@@ -40,7 +48,7 @@ public class MemoWidgetEditActivity extends Activity {
     protected void onResume() {
         super.onResume();
         List<TextLine> lines = Prefs.getTextLines(this);
-        for (int i = 0; i < Prefs.TEXT_LINE_COUNT; i++) {
+        for (int i = 0; i < Prefs.getTextLineCount(this); i++) {
             mEditTexts.get(i).setText(lines.get(i).getText());
         }
         TextView footer = (TextView) findViewById(R.id.textFooter);
@@ -61,7 +69,7 @@ public class MemoWidgetEditActivity extends Activity {
     public void onButtonClick(View view) {
         switch ((ButtonStateTextWatcher.STATE) view.getTag(R.id.buttonState)) {
             case CLEAR: {
-                EditText editText = (EditText) findViewById(editTextIds[buttonIds.indexOf(view.getId())]);
+                EditText editText = (EditText) findViewById(EDIT_TEXT_IDS[BUTTON_IDS.indexOf(view.getId())]);
                 view.setTag(R.id.cachedText, editText.getText().toString());
                 editText.setText("");
                 break;
@@ -69,7 +77,7 @@ public class MemoWidgetEditActivity extends Activity {
             case UNDO: {
                 CharSequence text = (CharSequence) view.getTag(R.id.cachedText);
                 view.setTag(R.id.cachedText, "");
-                ((EditText) findViewById(editTextIds[buttonIds.indexOf(view.getId())])).setText(text);
+                ((EditText) findViewById(EDIT_TEXT_IDS[BUTTON_IDS.indexOf(view.getId())])).setText(text);
                 break;
             }
             default:

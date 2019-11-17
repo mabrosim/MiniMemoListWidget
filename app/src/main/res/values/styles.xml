@@ -59,6 +59,20 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="EditListSizeLayoutStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginEnd">2dp</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:layout_marginRight">2dp</item>
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
     <style name="TextLineLayoutStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -66,6 +80,24 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:padding">2dp</item>
         <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="EditListSizeStyle" parent="android:Widget.DeviceDefault.EditText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">0.2</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
+        <item name="android:paddingLeft">18dp</item>
+        <item name="android:paddingRight">4dp</item>
+        <item name="android:inputType">number</item>
+        <item name="android:digits">5,6,7,8,9</item>
+        <item name="android:background">@drawable/text_edit_rounded_background</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.DeviceDefault.Medium
+        </item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">22sp</item>
     </style>
 
     <style name="EditTextStyle" parent="android:Widget.DeviceDefault.EditText">

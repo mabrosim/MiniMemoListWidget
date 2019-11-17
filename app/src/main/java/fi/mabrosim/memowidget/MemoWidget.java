@@ -25,7 +25,11 @@ import java.util.List;
  * MemoWidgetConfigureActivity}
  */
 public class MemoWidget extends AppWidgetProvider {
-    private static final int VIEW_IDS[] = {R.id.tvLine1, R.id.tvLine2, R.id.tvLine3, R.id.tvLine4, R.id.tvLine5};
+    private static final int[] VIEW_IDS = {R.id.tvLine1, R.id.tvLine2, R.id.tvLine3, R.id.tvLine4,
+            R.id.tvLine5, R.id.tvLine6, R.id.tvLine7, R.id.tvLine8, R.id.tvLine9};
+
+    private static final int[] LAYOUT_IDS = {R.layout.memowidget5, R.layout.memowidget6,
+            R.layout.memowidget7, R.layout.memowidget8, R.layout.memowidget9};
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -94,12 +98,14 @@ public class MemoWidget extends AppWidgetProvider {
     }
 
     private static void updateViews(Context context) {
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.memowidget);
+        final int textLineCount = Prefs.getTextLineCount(context);
+        RemoteViews views = new RemoteViews(context.getPackageName(), LAYOUT_IDS[textLineCount - 5]);
         List<TextLine> lines = Prefs.getTextLines(context);
 
-        for (int i = 0; i < Prefs.TEXT_LINE_COUNT; i++) {
+        for (int i = 0; i < textLineCount; i++) {
             views.setTextViewText(VIEW_IDS[i], lines.get(i).getText());
         }
+
         views.setTextViewText(R.id.textFooter, Utils.getFooterText(context, lines));
 
         Intent intent = new Intent(Clicks.ACTION_CLICK, null, context, Receiver.class);

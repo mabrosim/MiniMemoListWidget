@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    android:id="@+id/layoutWidget"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/widget_rounded_background"
+    android:paddingBottom="1dp"
+    android:paddingLeft="2dp"
+    android:paddingRight="2dp"
+    android:paddingTop="1dp">
+
+    <LinearLayout
+        android:id="@+id/linesContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvLine1"
+            style="@style/TextStyle.Line.First"/>
+
+        <TextView
+            android:id="@+id/tvLine2"
+            style="@style/TextStyle.Line"/>
+
+        <TextView
+            android:id="@+id/tvLine3"
+            style="@style/TextStyle.Line"/>
+
+        <TextView
+            android:id="@+id/tvLine4"
+            style="@style/TextStyle.Line"/>
+
+        <TextView
+            android:id="@+id/tvLine5"
+            style="@style/TextStyle.Line"/>
+
+        <TextView
+            android:id="@+id/tvLine6"
+            style="@style/TextStyle.Line.Last"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textFooter"
+        style="@style/TextStyle.Timestamp"/>
+
+</FrameLayout>
