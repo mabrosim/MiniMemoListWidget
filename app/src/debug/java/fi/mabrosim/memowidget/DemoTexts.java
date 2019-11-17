@@ -16,7 +16,9 @@ final class DemoTexts {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         String[] strings = context.getResources().getStringArray(R.array.demo_texts);
         JSONObject jsonObject = new JSONObject();
-        for (int i = 0; i < strings.length; i++) {
+        final int textLineCount = Prefs.getTextLineCount(context);
+
+        for (int i = 0; i < textLineCount; i++) {
             editor.remove(Prefs.KEY_PREFIX_LINE + i);
             try {
                 jsonObject.put(Prefs.JSON_KEY_TEXT, strings[i]);
