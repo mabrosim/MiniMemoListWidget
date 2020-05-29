@@ -5,5 +5,5 @@
                     android:minHeight="40dp"
                     android:minWidth="40dp"
                     android:previewImage="@drawable/app_icon"
-                    android:resizeMode="horizontal"
+                    android:resizeMode="horizontal|vertical"
                     android:updatePeriodMillis="0"/>

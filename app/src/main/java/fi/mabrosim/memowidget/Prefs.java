@@ -21,7 +21,7 @@ final class Prefs {
     private static final String PREF_SHOW_HINT = "SHOW_HINT";
     private static final String PREF_IS_WIDGET_ENABLED = "WIDGET_IS_ENABLED";
     private static final String PREF_TEXT_LINE_COUNT = "TEXT_LINE_COUNT";
-    private static final int DEFAULT_TEXT_LINE_COUNT = 6;
+    private static final int DEFAULT_TEXT_LINE_COUNT = 5;
 
     private Prefs() {
     }
