@@ -7,8 +7,8 @@ android {
         applicationId "fi.mabrosim.memowidget"
         minSdkVersion 14
         targetSdkVersion 29
-        versionCode 11
-        versionName "19w46.7"
+        versionCode 12
+        versionName "20w22.5"
     }
     buildTypes {
         debug {
