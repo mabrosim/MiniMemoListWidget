@@ -15,7 +15,8 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".MemoWidgetConfigureActivity"
-            android:theme="@style/ConfigurationActivityTheme">
+            android:theme="@style/ConfigurationActivityTheme"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -23,14 +24,16 @@
 
         <activity
             android:name=".MemoWidgetEditActivity"
-            android:theme="@style/EditActivityTheme">
+            android:theme="@style/EditActivityTheme"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <receiver android:name=".MemoWidget">
+        <receiver android:name=".MemoWidget"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>

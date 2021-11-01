@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion '29.0.2'
+    compileSdkVersion 31
+    buildToolsVersion '31.0.0'
     defaultConfig {
         applicationId "fi.mabrosim.memowidget"
         minSdkVersion 14
-        targetSdkVersion 29
-        versionCode 12
-        versionName "20w22.5"
+        targetSdkVersion 31
+        versionCode 13
+        versionName "21w44.1"
     }
     buildTypes {
         debug {
@@ -27,7 +27,7 @@ android.applicationVariants.all { variant ->
 }
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.1.0'
-    implementation 'androidx.core:core:1.3.0'
+    implementation 'androidx.annotation:annotation:1.2.0'
+    implementation 'androidx.core:core:1.7.0'
     testImplementation 'junit:junit:4.12'
 }

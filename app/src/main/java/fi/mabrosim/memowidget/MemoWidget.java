@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import androidx.annotation.NonNull;
 import androidx.core.app.JobIntentService;
+
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -65,7 +67,7 @@ public class MemoWidget extends AppWidgetProvider {
     }
 
     public static class UpdateService extends JobIntentService {
-        private final Handler mHandler = new Handler();
+        private final Handler mHandler = new Handler(Looper.getMainLooper());
 
         public static void enqueueWork(Context context, Intent work) {
             enqueueWork(context, UpdateService.class, 1, work);
