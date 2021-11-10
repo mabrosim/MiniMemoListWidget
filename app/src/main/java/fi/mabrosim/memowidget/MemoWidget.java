@@ -1,5 +1,6 @@
 package fi.mabrosim.memowidget;
 
+import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -99,6 +100,7 @@ public class MemoWidget extends AppWidgetProvider {
         startActivity(context, MemoWidgetConfigureActivity.class);
     }
 
+    @SuppressLint("UnspecifiedImmutableFlag")
     private static void updateViews(Context context) {
         final int textLineCount = Prefs.getTextLineCount(context);
         RemoteViews views = new RemoteViews(context.getPackageName(), LAYOUT_IDS[textLineCount - 5]);
@@ -111,7 +113,12 @@ public class MemoWidget extends AppWidgetProvider {
         views.setTextViewText(R.id.textFooter, Utils.getFooterText(context, lines));
 
         Intent intent = new Intent(Clicks.ACTION_CLICK, null, context, Receiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        PendingIntent pendingIntent;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+        } else {
+            pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        }
         views.setOnClickPendingIntent(R.id.layoutWidget, pendingIntent);
 
         // Instruct the widget manager to update the widget
