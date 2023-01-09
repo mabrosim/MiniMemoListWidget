@@ -137,7 +137,7 @@ public class MemoWidget extends AppWidgetProvider {
         }
     }
 
-    private static void startActivity(Context context, Class activityClass) {
+    private static void startActivity(Context context, Class<?> activityClass) {
         Intent intent = new Intent(context, activityClass);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);

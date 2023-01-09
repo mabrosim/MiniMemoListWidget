@@ -19,12 +19,7 @@ final class Clicks {
         sInstance.mClickCount = ++clickCount;
 
         if (clickCount == 1) {
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    handleClicks(context);
-                }
-            }, CLICK_DELAY_IN_MS);
+            handler.postDelayed(() -> handleClicks(context), CLICK_DELAY_IN_MS);
         }
     }
 

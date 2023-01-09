@@ -95,7 +95,7 @@ final class Prefs {
             String newText = texts.get(i);
             TextLine line = storedLines.get(i);
 
-            if (!(newText.equals(line.getText()))) {
+            if (!(newText.contentEquals(line.getText()))) {
                 try {
                     int id = line.getId();
                     editor.remove(KEY_PREFIX_LINE + id);
