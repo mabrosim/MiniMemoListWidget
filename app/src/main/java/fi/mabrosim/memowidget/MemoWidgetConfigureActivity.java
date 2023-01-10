@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 
@@ -39,23 +37,15 @@ public class MemoWidgetConfigureActivity extends Activity {
                 }
             }
         });
-        findViewById(R.id.button_dismiss).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        findViewById(R.id.button_dismiss).setOnClickListener(view -> finish());
 
         Switch switchHint = (Switch) findViewById(R.id.switch1);
         switchHint.setChecked(Prefs.isShowHint(this));
-        switchHint.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Prefs.setShowHint(compoundButton.getContext(), b);
+        switchHint.setOnCheckedChangeListener((compoundButton, b) -> {
+            Prefs.setShowHint(compoundButton.getContext(), b);
 
-                if (BuildConfig.DEBUG) {
-                    DemoTexts.setDemoTexts(getApplicationContext());
-                }
+            if (BuildConfig.DEBUG) {
+                DemoTexts.setDemoTexts(getApplicationContext());
             }
         });
 
