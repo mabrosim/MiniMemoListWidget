@@ -7,8 +7,8 @@ android {
         applicationId "fi.mabrosim.memowidget"
         minSdkVersion 14
         targetSdkVersion 33
-        versionCode 16
-        versionName "23w02.1"
+        versionCode 17
+        versionName "23w03.5"
     }
     buildTypes {
         debug {
@@ -30,5 +30,6 @@ android.applicationVariants.all { variant ->
 dependencies {
     implementation 'androidx.annotation:annotation:1.5.0'
     implementation 'androidx.core:core:1.9.0'
+    implementation 'androidx.work:work-runtime:2.7.1'
     testImplementation 'junit:junit:4.13.1'
 }

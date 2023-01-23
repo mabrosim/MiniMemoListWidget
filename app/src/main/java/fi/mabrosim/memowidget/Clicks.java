@@ -2,6 +2,7 @@ package fi.mabrosim.memowidget;
 
 import android.content.Context;
 import android.os.Handler;
+import android.os.Looper;
 
 final class Clicks {
     static final String ACTION_CLICK = "fi.mabrosim.memowidget.action.CLICK";
@@ -14,21 +15,19 @@ final class Clicks {
     private Clicks() {
     }
 
-    static void handleClickAction(final Context context, final Handler handler) {
+    static void handleClickAction(final Context context) {
+        final Handler mHandler = new Handler(Looper.getMainLooper());
+
         int clickCount = sInstance.mClickCount;
         sInstance.mClickCount = ++clickCount;
 
         if (clickCount == 1) {
-            handler.postDelayed(() -> handleClicks(context), CLICK_DELAY_IN_MS);
+            mHandler.postDelayed(() -> handleClicks(context), CLICK_DELAY_IN_MS);
         }
     }
 
     private static void handleClicks(Context context) {
         switch (sInstance.mClickCount) {
-            case 1: {
-                MemoWidget.singleClickHandler(context);
-                break;
-            }
             case 2: {
                 MemoWidget.doubleClickHandler(context);
                 break;
@@ -37,6 +36,7 @@ final class Clicks {
                 MemoWidget.tripleClickHandler(context);
                 break;
             }
+            case 1:
             default: {
                 MemoWidget.singleClickHandler(context);
                 break;

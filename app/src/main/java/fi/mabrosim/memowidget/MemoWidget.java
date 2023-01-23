@@ -9,17 +9,24 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import androidx.annotation.NonNull;
-import androidx.core.app.JobIntentService;
-
-import android.os.Looper;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.work.Data;
+import androidx.work.ExistingWorkPolicy;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
+import androidx.work.Worker;
+import androidx.work.WorkerParameters;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -36,13 +43,13 @@ public class MemoWidget extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        updateMemoWidget(context);
+        MemoWidget.updateViews(context);
     }
 
     @Override
     public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager,
                                           int appWidgetId, Bundle newOptions) {
-        updateMemoWidget(context);
+        MemoWidget.updateViews(context);
     }
 
     @Override
@@ -56,31 +63,45 @@ public class MemoWidget extends AppWidgetProvider {
     }
 
     public static void updateMemoWidget(Context context) {
-        UpdateService.enqueueWork(context, new Intent());
+        MemoWidget.updateViews(context);
     }
 
     public static class Receiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            UpdateService.enqueueWork(context, intent);
+            ClickHandlerWork.enqueueWork(context, intent.getAction());
         }
     }
 
-    public static class UpdateService extends JobIntentService {
-        private final Handler mHandler = new Handler(Looper.getMainLooper());
+    // Define the Worker requiring input
+    public static class ClickHandlerWork extends Worker {
 
-        public static void enqueueWork(Context context, Intent work) {
-            enqueueWork(context, UpdateService.class, 1, work);
+        public ClickHandlerWork(Context appContext, WorkerParameters workerParams) {
+            super(appContext, workerParams);
         }
 
+        public static void enqueueWork(Context context, String action) {
+            WorkManager workManager = WorkManager.getInstance(context);
+            OneTimeWorkRequest myUploadWork =
+                    new OneTimeWorkRequest.Builder(ClickHandlerWork.class)
+                            .setInputData(
+                                    new Data.Builder()
+                                            .putString("ACTION", action)
+                                            .build()
+                            )
+                            .build();
+            workManager.enqueueUniqueWork("UPDATE_LISTENER", ExistingWorkPolicy.KEEP, myUploadWork);
+        }
+
+        @NonNull
         @Override
-        protected void onHandleWork(@NonNull Intent intent) {
-            if (Clicks.ACTION_CLICK.equals(intent.getAction())) {
-                Clicks.handleClickAction(this, mHandler);
-            } else {
-                MemoWidget.updateViews(this);
+        public Result doWork() {
+            String action = getInputData().getString("ACTION");
+            if (Clicks.ACTION_CLICK.equals(action)) {
+                Clicks.handleClickAction(getApplicationContext());
             }
+            return Result.success();
         }
     }
 
@@ -127,14 +148,20 @@ public class MemoWidget extends AppWidgetProvider {
     }
 
     private static void showToast(Context context) {
+        Toast.makeText(context, R.string.toast_text_123, Toast.LENGTH_LONG).show();
+        /*
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (inflater != null) {
             View layout = inflater.inflate(R.layout.toast_custom_layout, new FrameLayout(context), false);
             Toast toast = new Toast(context);
             toast.setDuration(Toast.LENGTH_LONG);
-            toast.setView(layout);
+            toast.setText(R.string.toast_text_123);
+            //toast.setText(TextUtils.join("\n", Arrays.asList(R.string.toast_text_1, R.string.toast_text_2, R.string.toast_text_3))) ;
+            //toast.setView(layout);
+            //toast.setView(layout);
             toast.show();
         }
+        */
     }
 
     private static void startActivity(Context context, Class<?> activityClass) {

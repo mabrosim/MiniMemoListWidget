@@ -1,5 +1,7 @@
 package fi.mabrosim.memowidget;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
@@ -49,6 +51,7 @@ final class TextLine {
         return lines.get(0).getTimestamp();
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "TextLine: id[ " + mId + " ] ,timestamp[ " + mTimestamp + " ] ,text[ " + mText + " ]";
@@ -85,7 +88,7 @@ final class TextLine {
             } else if (rhs.mText.isEmpty()) {
                 return -1;
             } else {
-                return rhs.mTimestamp < lhs.mTimestamp ? -1 : (rhs.mTimestamp == lhs.mTimestamp ? 0 : 1);
+                return Long.compare(rhs.mTimestamp, lhs.mTimestamp);
             }
         }
     }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
     <application
         android:name=".MemoWidgetApp"
@@ -41,10 +42,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/memowidget_info" />
         </receiver>
-
-        <service
-            android:name=".MemoWidget$UpdateService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <receiver android:name=".MemoWidget$Receiver">
 

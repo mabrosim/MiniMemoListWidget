@@ -7,6 +7,7 @@
     <string name="toast_text_1"> 1 * tap \u2015> Open editor</string>
     <string name="toast_text_2"> 2 * tap \u2015> Sort texts</string>
     <string name="toast_text_3"> 3 * tap \u2015> Show hint?</string>
+    <string name="toast_text_123">1 * tap \u2015> Open editor\n2 * tap \u2015> Sort texts\n3 * tap \u2015> Show hint</string>
     <string name="toast_help">Help</string>
     <string name="widget_disabled_hint">Please,\n add Mini Memo List widget to the home screen</string>
     <string name="sorting_by_name">by name</string>
