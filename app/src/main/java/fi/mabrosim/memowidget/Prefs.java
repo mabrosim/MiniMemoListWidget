@@ -80,7 +80,7 @@ final class Prefs {
 
     static void putVersionCode(Context context) {
         SharedPreferences.Editor sharedPrefEditor = sharedPreferences(context).edit();
-        sharedPrefEditor.putLong(KEY_VERSION_CODE, (long) BuildConfig.VERSION_CODE);
+        sharedPrefEditor.putLong(KEY_VERSION_CODE, BuildConfig.VERSION_CODE);
         sharedPrefEditor.apply();
     }
 

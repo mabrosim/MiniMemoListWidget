@@ -18,7 +18,7 @@ public class MemoWidgetConfigureActivity extends Activity {
 
         setContentView(R.layout.memowidget_configure);
 
-        final EditText editText = (EditText) findViewById(R.id.editListSize);
+        final EditText editText = findViewById(R.id.editListSize);
         editText.setText(String.valueOf(Prefs.getTextLineCount(this)));
 
         editText.addTextChangedListener(new TextWatcher() {
@@ -39,7 +39,7 @@ public class MemoWidgetConfigureActivity extends Activity {
         });
         findViewById(R.id.button_dismiss).setOnClickListener(view -> finish());
 
-        Switch switchHint = (Switch) findViewById(R.id.switch1);
+        Switch switchHint = findViewById(R.id.switch1);
         switchHint.setChecked(Prefs.isShowHint(this));
         switchHint.setOnCheckedChangeListener((compoundButton, b) -> {
             Prefs.setShowHint(compoundButton.getContext(), b);

@@ -6,6 +6,7 @@
     <string name="toast_text_1"> 1 * кас. \u2015> Открыть редактор</string>
     <string name="toast_text_2"> 2 * кас. \u2015> Сортировать</string>
     <string name="toast_text_3"> 3 * кас. \u2015> Показать справку?</string>
+    <string name="toast_text_123">1 * кас. \u2015> Открыть редактор\n2 * кас. \u2015> Сортировать\n3 * кас. \u2015> Показать справку</string>
     <string name="toast_help">Справка</string>
     <string name="widget_disabled_hint">Пожалуйста,\nдобавьте Mini Memo List виджет на главный экран</string>
     <string name="sorting_by_name">по имени</string>

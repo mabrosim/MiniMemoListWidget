@@ -30,8 +30,8 @@ public class MemoWidgetEditActivity extends Activity {
         setContentView(LAYOUT_IDS[textLineCount - 5]);
 
         for (int i = 0; i < textLineCount; i++) {
-            EditText editText = (EditText) findViewById(EDIT_TEXT_IDS[i]);
-            ImageButton imageButton = (ImageButton) findViewById(BUTTON_IDS.get(i));
+            EditText editText = findViewById(EDIT_TEXT_IDS[i]);
+            ImageButton imageButton = findViewById(BUTTON_IDS.get(i));
 
             mEditTexts.add(editText);
             editText.addTextChangedListener(new ButtonStateTextWatcher(imageButton));
@@ -51,7 +51,7 @@ public class MemoWidgetEditActivity extends Activity {
         for (int i = 0; i < Prefs.getTextLineCount(this); i++) {
             mEditTexts.get(i).setText(lines.get(i).getText());
         }
-        TextView footer = (TextView) findViewById(R.id.textFooter);
+        TextView footer = findViewById(R.id.textFooter);
         footer.setText(Utils.getFooterText(this, lines));
     }
 
@@ -69,7 +69,7 @@ public class MemoWidgetEditActivity extends Activity {
     public void onButtonClick(View view) {
         switch ((ButtonStateTextWatcher.STATE) view.getTag(R.id.buttonState)) {
             case CLEAR: {
-                EditText editText = (EditText) findViewById(EDIT_TEXT_IDS[BUTTON_IDS.indexOf(view.getId())]);
+                EditText editText = findViewById(EDIT_TEXT_IDS[BUTTON_IDS.indexOf(view.getId())]);
                 view.setTag(R.id.cachedText, editText.getText().toString());
                 editText.setText("");
                 break;
