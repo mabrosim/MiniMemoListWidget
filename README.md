@@ -5,7 +5,6 @@ Elegantly simple widget that holds 5 to 9 lines of easily editable texts.
 The widget is operated by tapping:
 - Single tap opens text editor.
 - Double tap sorts texts by name, by time edited or restore original order.
-- Triple tap prompts to configure the list size and enable/disable a popup hint.
 
 The widget is resizable in horizontal direction.
 
