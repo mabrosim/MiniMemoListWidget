@@ -1,6 +1,7 @@
 package fi.mabrosim.memowidget;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -41,6 +42,13 @@ public class MemoWidgetEditActivity extends Activity {
         if (!Prefs.isWidgetEnabled(this)) {
             findViewById(R.id.textViewDisabledHint).setVisibility(View.VISIBLE);
         }
+        findViewById(R.id.buttonSettings).setOnClickListener(view -> {
+            Intent intent = new Intent(this, MemoWidgetConfigureActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            this.startActivity(intent);
+
+            finish();
+        });
         setResult(RESULT_OK);
     }
 

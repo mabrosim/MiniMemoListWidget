@@ -124,7 +124,15 @@
         <item name="android:src">@drawable/ic_clear_grey_400_24dp</item>
         <item name="android:onClick">onButtonClick</item>
     </style>
-
+    <style name="ButtonSettingsStyle" parent="android:Widget.DeviceDefault.ImageButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:src">@drawable/ic_settings_black_24dp</item>
+        <item name="android:onClick">onButtonClick</item>
+    </style>
     <style name="ButtonStyle" parent="android:Widget.DeviceDefault.ImageButton">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

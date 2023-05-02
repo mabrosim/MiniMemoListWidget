@@ -124,12 +124,27 @@
             style="@style/EditButtonStyle"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textFooter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:textColor="@android:color/darker_gray"/>
+    <LinearLayout
+        style="@style/TextLineLayoutStyle">
+
+        <TextView
+            android:id="@+id/textFooter"
+            android:layout_width="0dp"
+            android:layout_weight="0.9"
+
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:textColor="@android:color/darker_gray" />
+
+        <ImageButton
+            android:id="@+id/buttonSettings"
+            style="@style/ButtonSettingsStyle"
+            android:layout_width="0dp"
+            android:layout_weight="0.1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -32,10 +32,6 @@ final class Clicks {
                 MemoWidget.doubleClickHandler(context);
                 break;
             }
-            case 3: {
-                MemoWidget.tripleClickHandler(context);
-                break;
-            }
             case 1:
             default: {
                 MemoWidget.singleClickHandler(context);

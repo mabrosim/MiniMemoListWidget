@@ -117,10 +117,6 @@ public class MemoWidget extends AppWidgetProvider {
         updateMemoWidget(context);
     }
 
-    static void tripleClickHandler(Context context) {
-        startActivity(context, MemoWidgetConfigureActivity.class);
-    }
-
     @SuppressLint("UnspecifiedImmutableFlag")
     private static void updateViews(Context context) {
         final int textLineCount = Prefs.getTextLineCount(context);
