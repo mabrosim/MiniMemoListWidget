@@ -74,6 +74,8 @@ public class MemoWidgetEditActivity extends Activity {
         MemoWidget.updateMemoWidget(this);
     }
 
+    // This method is used in layout files for android:onClick attributes.
+    @SuppressWarnings("unused")
     public void onButtonClick(View view) {
         switch ((ButtonStateTextWatcher.STATE) view.getTag(R.id.buttonState)) {
             case CLEAR: {
@@ -88,8 +90,8 @@ public class MemoWidgetEditActivity extends Activity {
                 ((EditText) findViewById(EDIT_TEXT_IDS[BUTTON_IDS.indexOf(view.getId())])).setText(text);
                 break;
             }
-            default:
-            case INACTIVE: {
+            case INACTIVE:
+            default: {
                 break;
             }
         }

@@ -9,10 +9,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -24,9 +20,6 @@ import androidx.work.WorkManager;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -106,7 +99,7 @@ public class MemoWidget extends AppWidgetProvider {
     }
 
     static void singleClickHandler(Context context) {
-        startActivity(context, MemoWidgetEditActivity.class);
+        startActivity(context);
     }
 
     static void doubleClickHandler(Context context) {
@@ -131,11 +124,7 @@ public class MemoWidget extends AppWidgetProvider {
 
         Intent intent = new Intent(Clicks.ACTION_CLICK, null, context, Receiver.class);
         PendingIntent pendingIntent;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
-        } else {
-            pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-        }
+        pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
         views.setOnClickPendingIntent(R.id.layoutWidget, pendingIntent);
 
         // Instruct the widget manager to update the widget
@@ -145,23 +134,10 @@ public class MemoWidget extends AppWidgetProvider {
 
     private static void showToast(Context context) {
         Toast.makeText(context, R.string.toast_text_123, Toast.LENGTH_LONG).show();
-        /*
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        if (inflater != null) {
-            View layout = inflater.inflate(R.layout.toast_custom_layout, new FrameLayout(context), false);
-            Toast toast = new Toast(context);
-            toast.setDuration(Toast.LENGTH_LONG);
-            toast.setText(R.string.toast_text_123);
-            //toast.setText(TextUtils.join("\n", Arrays.asList(R.string.toast_text_1, R.string.toast_text_2, R.string.toast_text_3))) ;
-            //toast.setView(layout);
-            //toast.setView(layout);
-            toast.show();
-        }
-        */
     }
 
-    private static void startActivity(Context context, Class<?> activityClass) {
-        Intent intent = new Intent(context, activityClass);
+    private static void startActivity(Context context) {
+        Intent intent = new Intent(context, MemoWidgetEditActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

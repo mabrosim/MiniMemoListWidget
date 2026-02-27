@@ -1,43 +1,34 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 33
-    buildToolsVersion '33.0.1'
+    buildToolsVersion '36.1.0'
     defaultConfig {
         applicationId "fi.mabrosim.memowidget"
-        minSdkVersion 14
-        targetSdkVersion 33
-        versionCode 18
-        versionName "23w18.2"
+        minSdkVersion 23
+        targetSdkVersion 36
+        versionCode = 19
+        versionName = "26w09.5"
+    }
+    buildFeatures {
+        buildConfig = true
     }
     buildTypes {
         debug {
-            applicationIdSuffix ".debug"
+            applicationIdSuffix = ".debug"
         }
         release {
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            minifyEnabled = true
+            shrinkResources = true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.txt'
         }
     }
-    namespace 'fi.mabrosim.memowidget'
-}
-
-android.applicationVariants.all { variant ->
-    variant.resValue "string", "versionName", variant.versionName
+    namespace = 'fi.mabrosim.memowidget'
+    compileSdkVersion = 36
 }
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.6.0'
-    implementation 'androidx.core:core:1.10.0'
-    implementation 'androidx.work:work-runtime:2.8.1'
-    testImplementation 'junit:junit:4.13.1'
-    constraints {
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
-            because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
-        }
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0") {
-            because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
-        }
-    }
+    implementation 'androidx.annotation:annotation:1.9.1'
+    implementation 'androidx.core:core:1.17.0'
+    implementation 'androidx.work:work-runtime:2.11.1'
+    testImplementation 'junit:junit:4.13.2'
 }

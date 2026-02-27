@@ -1,16 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <resources>
-    <string name="app_name" translatable="false">Mini Memo List Widget</string>
-    <string name="show_hint">Tapping hint?</string>
+    <string name="app_name">Mini Memo Widget</string>
+    <string name="add_button">Add</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="reset_sorting_toast_text">Sorting order reset</string>
+    <string name="toast_text_123">By name \nBy time \nDefault</string>
+    <string name="show_hint">Show hint?</string>
     <string name="text_lines_amount">List size</string>
-    <string name="toast_text_1"> 1 * tap \u2015> Open editor</string>
-    <string name="toast_text_2"> 2 * tap \u2015> Sort texts</string>
-    <string name="toast_text_3"> 3 * tap \u2015> Show hint?</string>
-    <string name="toast_text_123">1 * tap \u2015> Open editor\n2 * tap \u2015> Sort texts\n3 * tap \u2015> Show hint</string>
+    <string name="toast_text_1">1 * tap -> Open editor</string>
+    <string name="toast_text_2">2 * tap -> Sort</string>
+    <string name="toast_text_3">3 * tap -> Show hint?</string>
     <string name="toast_help">Help</string>
-    <string name="widget_disabled_hint">Please,\n add Mini Memo List widget to the home screen</string>
+    <string name="widget_disabled_hint">Please,\nadd the Mini Memo List widget to your home screen</string>
     <string name="sorting_by_name">by name</string>
-    <string name="sorting_by_date">by date edited</string>
-    <string name="sorting_default"/>
+    <string name="sorting_by_date">by date</string>
+    <string name="sorting_default">default</string>
+    <string name="versionName">26w09.5</string>
 </resources>

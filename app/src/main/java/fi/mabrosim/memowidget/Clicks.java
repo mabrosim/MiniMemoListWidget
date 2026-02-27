@@ -17,28 +17,24 @@ final class Clicks {
 
     static void handleClickAction(final Context context) {
         final Handler mHandler = new Handler(Looper.getMainLooper());
+        sInstance.mClickCount++;
 
-        int clickCount = sInstance.mClickCount;
-        sInstance.mClickCount = ++clickCount;
-
-        if (clickCount == 1) {
+        if (sInstance.mClickCount == 1) {
             mHandler.postDelayed(() -> handleClicks(context), CLICK_DELAY_IN_MS);
         }
     }
 
     private static void handleClicks(Context context) {
         switch (sInstance.mClickCount) {
-            case 2: {
-                MemoWidget.doubleClickHandler(context);
+            case 1: {
+                MemoWidget.singleClickHandler(context);
                 break;
             }
-            case 1:
-            default: {
-                MemoWidget.singleClickHandler(context);
+            case 2: {
+                MemoWidget.doubleClickHandler(context);
                 break;
             }
         }
         sInstance.mClickCount = 0;
     }
 }
-

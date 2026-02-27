@@ -49,8 +49,8 @@ public class ButtonStateTextWatcher implements TextWatcher {
                 imageButton.setImageResource(R.drawable.ic_undo_black_24dp);
                 break;
             }
-            default:
-            case INACTIVE: {
+            case INACTIVE:
+            default: {
                 imageButton.setImageResource(R.drawable.ic_clear_grey_400_24dp);
                 break;
             }

@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
+    <string name="app_name">Mini Memo заметки</string>
+    <string name="add_button">Добавить</string>
+    <string name="appwidget_text">ПРИМЕР</string>
+    <string name="add_widget">Добавить виджет</string>
+    <string name="reset_sorting_toast_text">Сортировка сброшена</string>
     <string name="show_hint">Показать справку?</string>
     <string name="text_lines_amount">Размер списка</string>
     <string name="toast_text_1"> 1 * кас. \u2015> Открыть редактор</string>
     <string name="toast_text_2"> 2 * кас. \u2015> Сортировать</string>
     <string name="toast_text_3"> 3 * кас. \u2015> Показать справку?</string>
-    <string name="toast_text_123">1 * кас. \u2015> Открыть редактор\n2 * кас. \u2015> Сортировать\n3 * кас. \u2015> Показать справку</string>
+    <string name="toast_text_123">по имени \nпо дате \nпо-умолчанию</string>
     <string name="toast_help">Справка</string>
     <string name="widget_disabled_hint">Пожалуйста,\nдобавьте Mini Memo List виджет на главный экран</string>
     <string name="sorting_by_name">по имени</string>
     <string name="sorting_by_date">по дате</string>
-    <string name="sorting_default"/>
+    <string name="sorting_default">по-умолчанию</string>
+    <string name="versionName">26w09.5</string>
 </resources>
